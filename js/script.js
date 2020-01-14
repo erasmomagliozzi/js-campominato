@@ -15,22 +15,36 @@
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con
 // difficoltà 2=> tra 1 e 50
 var array = [];
-
+// Il computer deve generare 16 numeri casuali tra 1 e 100.
 for (var i = 0; i < 16; i++){
  var casualNumber = Math.floor(Math.random() * (100 - 1) + 1);
  array.push(casualNumber);
-
 }
 console.log(array);
+// In seguito deve chiedere all’utente di inserire un numero alla
+// volta, sempre compreso tra 1 e 100.
 
-
+var trovato = false;
+var j = 0;
 do{
-  var numeroUtente = parseInt(prompt('Inserisci un numero da 1 a 100'));
-}while (0 == numeroUtente || 100 < numeroUtente)
-console.log(numeroUtente);
+  do{
+    var numeroUtente = parseInt(prompt('Inserisci un numero da 1 a 100'));
+  }while (0 == numeroUtente || 100 < numeroUtente)
+  console.log(numeroUtente);
 
-for (var i = 0; i < array.length; i++){
-  if(numeroUtente == array[i]){
-   alert('partita terminata');
- }
+  var i = 0;
+  do {
+    if (numeroUtente == array[i] ) {
+       trovato = true;
+    }
+    i++;
+  } while (trovato == false && i < 16);
+
+  j++;
+
+}while (trovato == false)
+if (trovato == true) {
+  alert('hai perso');
+}else if (trovato == false && j <= 5){
+  alert('hai vinto');
 }
