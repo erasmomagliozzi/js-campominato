@@ -16,9 +16,14 @@
 // difficoltà 2=> tra 1 e 50
 var array = [];
 // Il computer deve generare 16 numeri casuali tra 1 e 100.
-for (var i = 0; i < 16; i++){
- var casualNumber = Math.floor(Math.random() * (100 - 1) + 1);
- array.push(casualNumber);
+
+while (array.length < 16) {
+  //pusho solo se il numero non è già presente
+  var numberRandom = numeriCasuali(1, 100);
+  var find = isInArray(array, numberRandom); // true o false
+  if(find == false) {
+    array.push(numberRandom);
+  }
 }
 console.log(array);
 // In seguito deve chiedere all’utente di inserire un numero alla
@@ -43,8 +48,30 @@ do{
   j++;
 
 }while (trovato == false)
+
 if (trovato == true) {
   alert('hai perso');
 }else if (trovato == false && j <= 5){
   alert('hai vinto');
+}
+// -------FUNZIONI-------
+
+function numeriCasuali(numMin, numMax) {
+  //codice
+  numMin = Math.ceil(numMin);
+  numMax = Math.floor(numMax);
+  var result = Math.floor(Math.random() * (numMax - numMin + 1)) + numMin;
+  return  result;
+}
+
+function isInArray(arrayFunction, value) {
+  var i = 0;
+  var result = false;
+  while (i < arrayFunction.length && result == false) {
+    if (arrayFunction[i] == value) {
+      result = true;
+    }
+    i++;
+  }
+  return result;
 }
